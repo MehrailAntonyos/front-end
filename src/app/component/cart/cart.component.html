@@ -1,0 +1,43 @@
+<p>cart works!</p>
+
+<h1>{{nowDate |date: 'shortTime'}}</h1>
+<h1>{{'home' |translate}}</h1>
+
+
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Qty</th>
+        <th scope="col">price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 111111111111 
+                <ng-container *ngFor="let item of products">
+                <tr  *ngIf="item.qty!=0"> -->
+      <!-- 222222222222
+         <tr *ngFor="let item of products" [hidden]="item.qty==0"> -->
+        <tr *ngFor="let item of products" [ngStyle]="{'font-size': item.qty==0?'10px':'20px'}" [ngClass]="{'bg-danger text-light': item.qty==0,'bg-warning':item.qty<=3}">
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.name | uppercase }}</td>
+        <td><img Imgbox="gray" hovercolor="blue" [src]="item.img" /></td>
+        <td>
+            <!-- <div *ngIf="item.qty==0 ;else qty">OUT of Stock</div>
+            <ng-template #qty>{{item.qty}}</ng-template> -->
+            <div [ngSwitch]="item.qty">
+                <div *ngSwitchCase="0">OUT of Stock</div>
+                <div *ngSwitchCase="1" >Buy NOW last item</div>
+                <div *ngSwitchCase="2" >only 2 left</div>
+               <div *ngSwitchDefault>{{item.qty}}</div>
+            </div>
+        </td>
+        <td>{{ item.price | currency :"EGP":"ج.مصري"}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
