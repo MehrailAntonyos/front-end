@@ -23,11 +23,15 @@ export class AuthService {
     return this.logged.asObservable()
   }
 
+  setUserRole(status: boolean) {
+    this.admin.next(status)
+  }
+  getUserRole() {
+    return this.admin.asObservable()
+  }
   login(user: UserLogin) {
     console.log(user);
-    if (user.UserName == "admin") {
-      this.isAdmin()
-    }
+    
     return this.http.post<APIResponse<string>>(`${environment.APIURl}/User/Login`, user)
   }
   register(user: UserRegister) {
@@ -50,16 +54,28 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    console.log("user is admin");
+    console.log("user checked if is admin");
     //&& localStorage.getItem("UserName") != "admin" 
-    if (localStorage.getItem("token") == null) return false
+    if (localStorage.getItem("role") == "user") return false
     else {
       console.log("user is admin");
       return true;
     }
   }
 
-  setToken(token: string) {
+  setRole(Role: string) {
+    localStorage.setItem("role", Role)
+  }
+  getRole(): string | null {
+    return localStorage.getItem("role")
+  }
+  removeRole() {
+    localStorage.removeItem("role")
+  }
+
+
+  /////////////////////////////////////
+  setToken(token: string,) {
     localStorage.setItem("token", token)
   }
   getToken(): string | null {

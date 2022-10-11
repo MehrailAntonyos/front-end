@@ -26,6 +26,14 @@ export class LoginComponent implements OnInit {
         if(response.Success){
           this.Auth.setToken(response.Data)
           this.Auth.setLoggedStatus(true)
+          if (user.UserName == "admin") {
+            this.Auth.setRole("admin")
+            this.Auth.setUserRole(true)
+          }else {
+            this.Auth.setRole("user")
+
+            this.Auth.setUserRole(false)
+          }
           this.router.navigateByUrl("/profile")
         }
         else(

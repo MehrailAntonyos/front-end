@@ -18,6 +18,9 @@ export class NavbarComponent implements OnInit {
     this.Auth.getLoggedStatus().subscribe((data)=>{
       this.islogged = data
     })
+    this.Auth.getUserRole().subscribe((data)=>{
+      this.isAdmin = data
+    })
   }
 
 }
