@@ -10,9 +10,9 @@ import { retry, Subject } from "rxjs";
         this.isloading = new Subject<boolean>();
 
     }
-    // getLoader(){
-    //     return this.isloading
-    // }
+    getLoader(){
+        return this.isloading
+    }
     Show(){
         this.isloading.next(true)
     }

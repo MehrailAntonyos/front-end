@@ -4,6 +4,7 @@ import { CreateProductComponent } from "./component/create-product/create-produc
 import { CreateStudentComponent } from "./component/create-student/create-student.component";
 import { DashbourdLayoutComponent } from "./component/dashbourd-layout/dashbourd-layout.component";
 import { DashbourdComponent } from "./component/dashbourd/dashbourd.component";
+import { AuthGuard } from "./component/guard/auth.guard";
 import { HomeComponent } from "./component/home/home.component";
 import { LoginComponent } from "./component/login/login.component";
 import { LogoutComponent } from "./component/logout/logout.component";
@@ -40,7 +41,7 @@ let routes:Routes=[
         // {path :"dashbourd",redirectTo:"/dashbourd/home",pathMatch:"full"},
         {path:"home",component:DashbourdComponent},//dashbourd/home
         {path:'create',component:CreateProductComponent},
-        {path:'product',component:ProductlistComponent},
+        {path:'product',component:ProductlistComponent, canActivate:[AuthGuard]},
     ]},
 
     {path:'**',component:NotfoundComponent}

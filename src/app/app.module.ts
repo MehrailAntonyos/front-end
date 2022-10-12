@@ -25,6 +25,10 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { LogoutComponent } from './component/logout/logout.component';
 import { ProfileComponent } from './component/Profile/Profile.component';
+import { LoaderInterceptor } from './service/API/loader.interceptor';
+import { AuthInterceptor } from './service/API/auth.interceptor';
+import { HttpIntercepters } from './service/API/httpInterceptors';
+import { LoaderComponent } from './component/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,8 @@ import { ProfileComponent } from './component/Profile/Profile.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
